@@ -1,0 +1,27 @@
+<h2>FormsModule</h2>
+<md-card>
+  <md-card-title>
+    Registration form
+  </md-card-title>
+  <form novalidate #f="ngForm">
+    <input [ngModel]="name.first" name="first" placeholder="First name">
+    <input [ngModel]="name.last" name="last" placeholder="Last name">
+    <div ngModelGroup="account" password-matcher #account="ngModelGroup">
+      <label>Account</label>
+      <input ngModel name="username" placeholder="Username">
+      <input ngModel name="password" placeholder="Password" required
+      #password="ngModel">
+      <input ngModel name="confirm" placeholder="Confirm password" required>
+    </div>
+    <label>Would you like to receive a newsletter?</label>
+    <switch-control name="newsletter" ngModel></switch-control>
+    <md-card-actions align="end">
+      <button md-button>SUBMIT</button>
+    </md-card-actions>
+  </form>
+</md-card>
+<md-card>
+  <p>Form: {{ f.value | json }}</p>
+  <p>Form status: {{ f.control.status }}</p>
+  <p>Account errors: {{ account.control?.errors | json  }}</p>
+</md-card>
